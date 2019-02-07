@@ -16,12 +16,18 @@ module.exports = {
         extensions: ['*', '.js', '.jsx'],
         alias: {
             modules: __dirname + '/node_modules'
+            // jQuery: 'modules/startbootstrap-sb-admin-2/vendor/jquery/jquery.min.js',
+            // bootstrap: 'modules/startbootstrap-sb-admin-2/vendor/bootstrap/js/bootstrap.bundle.min.js'
         }
     },
     plugins: [
         new MiniCssExtractPlugin({
             filename: 'app.css'
-        })
+        }),
+        new webpack.ProvidePlugin({
+            jQuery: 'jquery',
+            $: 'jquery'
+          })
     ],
     devServer: {
         contentBase: "./public",
