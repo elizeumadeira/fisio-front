@@ -4,7 +4,7 @@ import '../common/template/dependencies.js';
 import SideBar from '../common/template/sidebar/SideBar';
 import Header from '../common/template/Header/Header';
 import Footer from '../common/template/Footer/Footer';
-import Login from '../common/template/Login/Login';
+import Auth from '../components/Auth/Auth';
 
 export default props => (
     <React.Fragment>
@@ -13,7 +13,8 @@ export default props => (
             <div id="content">
                 <Header />
                 <div id="container-fluid">
-                    <Login />
+                    
+                    <Auth />
                 </div>
                 <Footer />
             </div>
