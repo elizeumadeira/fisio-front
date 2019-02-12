@@ -1,6 +1,10 @@
 const user_key = '_fisio_auth_userauth';
 const INITIAL_STATE = {
-    user: null,
+    user: {
+        email: 'elizeu.madeira@gmail.com',
+        password: 'whatever',
+        lembrar_senha: true
+    },
     token: null,
     valid_token: false
 };

@@ -8,7 +8,8 @@ import promise from 'redux-promise';
 import multi from 'redux-multi';
 import thunk from 'redux-thunk';
 
-import Routes from './main/routes';
+import Routes from './components/Routes/Routes';
+
 import reducers from './main/reducers.js';
 
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();

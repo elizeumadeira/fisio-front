@@ -18,3 +18,7 @@ export function login(values) {
             });
     }
 }
+
+export function is_autenticated(){
+
+}

@@ -10,9 +10,16 @@ export default props => (
         </a>
         <hr className="sidebar-divider my-0" />
         <li className="nav-item active">
-            <a className="nav-link" href="index.html">
+            <a className="nav-link" href="login">
                 <i className="fas fa-fw fa-tachometer-alt"></i>
-                <span>Dashboard</span></a>
+                <span>Login</span>
+            </a>
+        </li>
+        <li className="nav-item active">
+            <a className="nav-link" href="dashboard">
+                <i className="fas fa-fw fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </a>
         </li>
         <hr className="sidebar-divider" />
         <div className="sidebar-heading">Interface</div>
