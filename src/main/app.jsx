@@ -5,6 +5,7 @@ import SideBar from '../common/template/Sidebar/SideBar';
 import Header from '../common/template/Header/Header';
 import Footer from '../common/template/Footer/Footer';
 import Auth from '../components/Auth/Auth';
+import Message from "../common/Message/Message";
 
 export default props => (
     <React.Fragment>
@@ -16,6 +17,7 @@ export default props => (
                     <Auth />
                 </div>
                 <Footer />
+                <Message />
             </div>
         </div>
     </React.Fragment>
