@@ -15,9 +15,7 @@ module.exports = {
     resolve: {
         extensions: ['*', '.js', '.jsx'],
         alias: {
-            modules: __dirname + '/node_modules',
-            templates: __dirname + '/src/common/template',
-            components: __dirname + '/src/common/components'
+            modules: __dirname + '/node_modules'
             // jQuery: 'modules/startbootstrap-sb-admin-2/vendor/jquery/jquery.min.js',
             // bootstrap: 'modules/startbootstrap-sb-admin-2/vendor/bootstrap/js/bootstrap.bundle.min.js'
         }

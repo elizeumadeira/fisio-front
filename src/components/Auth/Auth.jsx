@@ -9,8 +9,13 @@ class Auth extends Component {
   constructor(props) {
     super(props);
 
+    //redireciona para o dashboard se o usuário ja esta logado
+    if (this.props.user.valid_token) {
+      this.props.history.push("/dashboard");
+    }
+
     this.state = {
-      user: this.props.user.user || {
+      user: { ...this.props.user.user, password: "" } || {
         email: "",
         password: "",
         lembrar_senha: true

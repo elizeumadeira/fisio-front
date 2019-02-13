@@ -4,8 +4,10 @@ import '../common/template/dependencies.js';
 import SideBar from '../common/template/Sidebar/SideBar';
 import Header from '../common/template/Header/Header';
 import Footer from '../common/template/Footer/Footer';
-import Auth from '../components/Auth/Auth';
+// import Auth from '../components/Auth/Auth';
 import Message from "../common/Message/Message";
+import Routes from '../components/Routes/Routes';
+
 
 export default props => (
     <React.Fragment>
@@ -14,7 +16,7 @@ export default props => (
             <div id="content">
                 <Header />
                 <div id="container-fluid">
-                    <Auth />
+                    <Routes />
                 </div>
                 <Footer />
                 <Message />
