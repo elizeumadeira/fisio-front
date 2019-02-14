@@ -7,8 +7,12 @@ import 'modules/startbootstrap-sb-admin-2/vendor/jquery-easing/jquery.easing.min
 import 'modules/startbootstrap-sb-admin-2/js/sb-admin-2.min.js';
 
 //pacote de icones
-import 'modules/@fortawesome/fontawesome-free/css/fontawesome.min.css';
+// import 'modules/@fortawesome/fontawesome-free/css/fontawesome.min.css';
 // import 'modules/startbootstrap-sb-admin-2/vendor/fontawesome-free/css/fontawesome.min.css';
+// import 'modules/startbootstrap-sb-admin-2/vendor/fontawesome-free/css/regular.min.css';
+// import 'modules/startbootstrap-sb-admin-2/vendor/fontawesome-free/css/solid.min.css';
+import 'modules/@fortawesome/fontawesome-free/css/fontawesome.min.css';
+import 'modules/@fortawesome/fontawesome-free/css/solid.min.css';
 
 // CSS próprio
 import './custom.css'
