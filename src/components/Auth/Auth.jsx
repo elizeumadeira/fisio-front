@@ -23,6 +23,8 @@ class Auth extends Component {
       valid_token: this.props.user.valid_token || false,
       token: this.props.user.token || ""
     };
+
+    console.log(this.state);
   }
 
   handleInput(e) {

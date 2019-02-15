@@ -1,7 +1,15 @@
 import consts from '../../consts';
 
 const user_key = consts.USER_KEY;
-const ls = JSON.parse(localStorage.getItem(user_key)) || {};
+const ls = JSON.parse(localStorage.getItem(user_key)) || {
+    user: {
+        email: '',
+        password: '',
+        lembrar_senha: true
+    },
+    access_token: '',
+    valid_token: false
+};
 
 const INITIAL_STATE = {
     // user: { email: 'elizeu.madeira@gmail.com', password: 'whatever', lembrar_senha: true },
@@ -13,13 +21,12 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case 'USER_LOGGEDIN':
-            // const payload = JSON.stringify(action.payload);
             localStorage.setItem(user_key, JSON.stringify(action.payload));
             return {
                 ...state,
                 valid_token: true,
-                token: payload.access_token,
-                user: {...payload.user, password: ''},
+                token: action.payload.access_token,
+                user: {...action.payload.user, password: ''},
             }
         case 'USER_LOGGEDOUT':
             localStorage.removeItem(user_key);

@@ -3,40 +3,19 @@ import { connect } from "react-redux";
 
 import { Route, Redirect, withRouter } from "react-router-dom";
 
-// class PrivateRoute extends Component {
-//   constructor(props) {
-//     super(props);
-
-//     this.state = {
-//       component: props.component
-//     };
-//   }
-
-//   render() {
-//     return (
-//       <Route
-//         render={props =>
-//           this.props.is_autenticated ? (
-//             <Component {...props} />
-//           ) : (
-//             <Redirect
-//               to={{
-//                 pathname: "/",
-//                 state: { from: props.location }
-//               }}
-//             />
-//           )
-//         }
-//       />
-//     );
-//   }
-// }
 
 const PrivateRoute = ({ component: Component, is_autenticated, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      is_autenticated ? <Component {...props} /> : <Redirect to="/login" />
+      is_autenticated ? (
+        <Component {...props} />
+      ) : (
+        <React.Fragment>
+          {toastr.error('Erro', 'Por favor, faça o login para acessar a área privada')}
+          <Redirect to="/login" />
+        </React.Fragment>
+      )
     }
   />
 );
@@ -46,9 +25,11 @@ const mapStateToProps = state => ({
 });
 
 // export default connect(mapStateToProps,null)(PrivateRoute);
-export default withRouter(connect(
-  mapStateToProps,
-  null,
-  null,
-  { pure: false }
-)(PrivateRoute));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    null,
+    null,
+    { pure: false }
+  )(PrivateRoute)
+);

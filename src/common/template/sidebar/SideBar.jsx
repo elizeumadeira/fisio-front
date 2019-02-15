@@ -11,8 +11,6 @@ class Sidebar extends Component {
     this.state = {
       is_autenticated: props.user.valid_token
     };
-
-    console.log(this.props);
   }
 
   render() {
@@ -22,16 +20,19 @@ class Sidebar extends Component {
           return <i className={`fas ${icon.icon}`} />;
         }
       };
-      if (!props.hide) {
+      const { icon, text, to, active, hide } = props;
+        const rest = { ...props };
+        delete rest.icon;
+        delete rest.text;
+        delete rest.to;
+        delete rest.active;
+        delete rest.hide;
+      if (!hide) {
         return (
           <li className={`nav-item ${props.active ? "active" : ""}`}>
-            <Link
-              to={props.to || "/#"}
-              className="nav-link"
-              onClick={() => props.onclick() || void 0}
-            >
-              <If_Icon icon={props.icon} />
-              <span>{props.text}</span>
+            <Link to={to || "/#"} className="nav-link" {...rest}>
+              <If_Icon icon={icon} />
+              <span>{text}</span>
             </Link>
           </li>
         );
@@ -45,17 +46,15 @@ class Sidebar extends Component {
         className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
         id="accordionSidebar"
       >
-        <a
+        <Link
           className="sidebar-brand d-flex align-items-center justify-content-center"
-          href="index.html"
+          to="/"
         >
           <div className="sidebar-brand-icon rotate-n-15">
-            <i className="fas fa-laugh-wink" />
+            <i className="fas fa-laptop-medical" />
           </div>
-          <div className="sidebar-brand-text mx-3">
-            SB Admin <sup>2</sup>
-          </div>
-        </a>
+          <div className="sidebar-brand-text mx-3">Fisio</div>
+        </Link>
         <hr className="sidebar-divider my-0" />
         <Lilink
           to="/login"
@@ -79,7 +78,11 @@ class Sidebar extends Component {
           text="Configurações"
           active={false}
         />
-        <Lilink icon="fa-sign-out-alt" text="Logout" onclick={this.props.logout} />
+        <Lilink
+          icon="fa-sign-out-alt"
+          text="Logout"
+          onClick={this.props.logout}
+        />
       </ul>
     );
   }

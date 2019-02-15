@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { login, is_autenticated } from "../../../components/Auth/AuthActions";
+import { login } from "../../../components/Auth/AuthActions";
 
 export default props => {
   // constructor(props){
@@ -26,7 +26,6 @@ export default props => {
   //     this.setState({ ...this.state, user: { lembrar_senha: e.target.checked } });
   // }
   // const user = this.props.user;
-
   return (
     <div className="row">
       <div className="col-sm-9 col-md-7 col-lg-3 mx-auto">

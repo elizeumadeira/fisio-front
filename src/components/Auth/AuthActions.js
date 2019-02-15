@@ -6,7 +6,7 @@ import consts from '../../consts';
 
 export function login(values) {
     return dispatch => {
-        axios.post(`${consts.API_URL}/login`, {
+        return axios.post(`${consts.API_URL}/login`, {
             email: values.email, password: values.password
         }).then(resp => {
                 dispatch({
@@ -15,7 +15,9 @@ export function login(values) {
                 });
             })
             .catch(e => {
-                e.response.data.errors.array.forEach(error => toastr.error('Erro', error));
+                console.log('erro', e);
+                // toastr.error('Erro', e.response.data.status);
+                // e.response.data.errors.array.forEach(error => toastr.error('Erro', error));
             });
     }
 }
