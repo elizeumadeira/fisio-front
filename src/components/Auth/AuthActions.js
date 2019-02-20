@@ -1,3 +1,5 @@
+import React from 'react';
+import { Redirect } from "react-router-dom";
 import {
     toastr
 } from 'react-redux-toastr';
@@ -9,10 +11,10 @@ export function login(values) {
         return axios.post(`${consts.API_URL}/login`, {
             email: values.email, password: values.password
         }).then(resp => {
-                dispatch({
-                    type: 'USER_LOGGEDIN',
-                    payload: resp.data
-                });
+            dispatch({
+                type: 'USER_LOGGEDIN',
+                payload: resp.data
+            });
             })
             .catch(e => {
                 console.log('erro', e);
