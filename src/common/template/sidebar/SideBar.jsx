@@ -15,7 +15,7 @@ const Sidebar = props => {
     delete rest.hide;
     if (!hide) {
       return (
-        <li className={`nav-item ${props.active ? "active" : ""}`}>
+        <li className={`nav-item ${props.active && 'active'}`}>
           <Link to={to || "/#"} className="nav-link" {...rest}>
             {icon != "" &&
               <i className={`fas ${icon.icon}`} />

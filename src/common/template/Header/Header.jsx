@@ -31,7 +31,7 @@ const Header = props => {
             alt=""
           />
         </div>
-        <div className={message.readed && "font-weight-bold"}>
+        <div className={message.readed ? 'font-weight-bold' : ''}>
           <div className="text-truncate">{message.text}</div>
           <div className="small text-gray-500">{message.user_name} · {message.date}</div>
         </div>

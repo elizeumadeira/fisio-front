@@ -5,7 +5,7 @@ export default props => {
   if (props.user.valid_token) {
     return <Redirect to="/dashboard" />
   } else
-    return (
+    return ( console.log(props.user) ||
       <div className="row">
         <div className="col-sm-9 col-md-7 col-lg-3 mx-auto">
           <div className="card card-signin my-5">
@@ -18,7 +18,7 @@ export default props => {
                     id="inputEmail"
                     name="email"
                     className="form-control"
-                    value={props.user.email}
+                    value={props.user.email || ''}
                     onChange={e => props.handleInput(e)}
                     placeholder="Email address"
                     required
@@ -45,7 +45,7 @@ export default props => {
                     className="custom-control-input"
                     id="customCheck1"
                     onChange={e => props.handleLembrarSenha(e)}
-                    checked={props.user.lembrar_senha}
+                    checked={props.user.lembrar_senha && 'checked'}
                   />
                   <label className="custom-control-label" htmlFor="customCheck1">
                     Lembrar Senha

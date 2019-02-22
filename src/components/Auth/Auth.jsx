@@ -32,7 +32,9 @@ class Auth extends Component {
   }
 
   handleLembrarSenha(e) {
-    this.setState({ ...this.state, user: { lembrar_senha: e.target.checked } });
+    const i = { ...this.state };
+    i.user.lembrar_senha = e.target.checked;
+    this.setState(i);
   }
 
   render() {
