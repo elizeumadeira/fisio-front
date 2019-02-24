@@ -1,11 +1,12 @@
 import React from "react";
-import {  Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 export default props => {
-  if (props.user.valid_token) {
+  console.log(props.valid_token);
+  if (props.valid_token) {
     return <Redirect to="/dashboard" />
   } else
-    return ( console.log(props.user) ||
+    return (
       <div className="row">
         <div className="col-sm-9 col-md-7 col-lg-3 mx-auto">
           <div className="card card-signin my-5">

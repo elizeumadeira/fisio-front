@@ -1,4 +1,4 @@
-import consts from '../../consts';
+import consts from '../../config/consts';
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 
