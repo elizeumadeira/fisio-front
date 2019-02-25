@@ -1,4 +1,7 @@
 import React from "react";
+import {
+  toastr
+} from 'react-redux-toastr';
 import { connect } from "react-redux";
 
 import { Route, Redirect, withRouter } from "react-router-dom";
@@ -10,11 +13,11 @@ const PrivateRoute = ({ component: Component, is_autenticated, ...rest }) => (
       is_autenticated ? (
         <Component {...props} />
       ) : (
-        <React.Fragment>
-          {toastr.error('Erro', 'Por favor, faça o login para acessar a área privada')}
-          <Redirect to="/login" />
-        </React.Fragment>
-      )
+          <React.Fragment>
+            {toastr.error('Erro', 'Por favor, faça o login para acessar a área privada')}
+            <Redirect to="/login" />
+          </React.Fragment>
+        )
     }
   />
 );

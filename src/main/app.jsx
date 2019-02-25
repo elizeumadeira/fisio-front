@@ -16,7 +16,7 @@ export default props => (
       <div id="content-wrapper" className="d-flex flex-column">
         <Header />
         <div id="content">
-          <div id="container-fluid">
+          <div className="container-fluid">
             <Routes />
           </div>
           <Message />

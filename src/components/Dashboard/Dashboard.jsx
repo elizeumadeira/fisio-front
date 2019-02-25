@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import axios from 'axios';
 import consts from '../../config/consts'
 
+import { Primario as H1 } from '../../common/layout/title'
+import Card from './Card'
+
 export default class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -9,25 +12,29 @@ export default class Dashboard extends Component {
     this.state = {
       usuarios_cadastrados: 0
     }
+
+    this.updateUsuarios();
   }
 
-  teste(){
-    console.log('clicando no teste');
+  updateUsuarios() {
     axios.get(`${consts.API_URL}/dashboard`)
-    .then(resp => {
-      console.log('teste', resp);
-    }).catch(e => {
-      console.log('erro', e);
-  });
+      .then(resp => {
+        this.setState({
+          usuarios_cadastrados: resp.data.users
+        });
+      }).catch(e => {
+        // console.log('erro', e);
+      });
   }
 
 
   render() {
     return (
       <React.Fragment>
-        <h1>Dashboard asd</h1>
-        <h2>Usuários cadastrados {this.state.usuarios_cadastrados}</h2>
-        <button onClick={() => this.teste()}>Click</button>
+        <H1 text="Dashboard" />
+        <div className="row">
+          <Card title="Usuários cadastrados" info={this.state.usuarios_cadastrados} color="primary" icon="fa-users" />
+        </div>
       </React.Fragment>
     );
   }

@@ -1,6 +1,8 @@
 import {
     toastr
 } from 'react-redux-toastr';
+// import React from 'react';
+// import { Redirect } from "react-router-dom";
 import axios from 'axios';
 import consts from '../../config/consts';
 
@@ -18,6 +20,9 @@ export function login(values) {
             .catch(e => {
                 console.log('erro', e);
                 toastr.error('Erro', e.response.data.status);
+                dispatch({
+                    type: 'USER_LOGGEDOUT'
+                });
                 // e.response.data.errors.array.forEach(error => toastr.error('Erro', error));
             });
     }

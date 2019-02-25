@@ -1,6 +1,6 @@
 import consts from '../../config/consts';
-import React from 'react';
-import { Redirect } from 'react-router-dom';
+// import React from 'react';
+// import { Redirect } from 'react-router-dom';
 
 const user_key = consts.USER_KEY;
 const ls = JSON.parse(localStorage.getItem(user_key)) || {
@@ -27,7 +27,7 @@ export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case 'USER_LOGGEDIN':
             localStorage.setItem(user_key, JSON.stringify(action.payload));
-            <Redirect to="/dashboard" />
+            // <Redirect to="/dashboard" />
             return {
                 ...state,
                 valid_token: true,

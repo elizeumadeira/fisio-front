@@ -13,20 +13,17 @@ const Sidebar = props => {
     delete rest.to;
     delete rest.active;
     delete rest.hide;
-    if (!hide) {
-      return (
-        <li className={`nav-item ${props.active && 'active'}`}>
-          <Link to={to || "/#"} className="nav-link" {...rest}>
-            {icon != "" &&
-              <i className={`fas ${icon.icon}`} />
-            }
-            <span>{text}</span>
-          </Link>
-        </li>
-      );
-    } else {
-      return <React.Fragment />;
-    }
+
+    return (!hide) && (
+      <li className={`nav-item ${props.active && 'active'}`}>
+        <Link to={to || "/#"} className="nav-link" {...rest}>
+          {icon != "" &&
+            <i className={`fas ${icon}`} />
+          }
+          <span>{text}</span>
+        </Link>
+      </li>
+    );
   };
 
   return (
@@ -63,6 +60,14 @@ const Sidebar = props => {
             text="Dashboard"
             active={true}
           />
+
+          <Lilink
+            to="/users"
+            icon="fa-users"
+            text="Usuários"
+            active={true}
+          />
+
           <hr className="sidebar-divider" />
           <div className="sidebar-heading">Sistema</div>
           <Lilink
