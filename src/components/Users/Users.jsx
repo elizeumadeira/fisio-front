@@ -26,6 +26,7 @@ export default class Users extends Component {
                 <td>{usuario.phone}</td>
                 <td>
                     <Button to={`/users/update/${usuario.id}`} text="Atualizar" />
+                    <Button to={`/users/delete/${usuario.id}`} text="Excluir" />
                 </td>
             </tr>
         ))

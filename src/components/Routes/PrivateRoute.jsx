@@ -11,7 +11,7 @@ const PrivateRoute = ({ component: Component, is_autenticated, ...rest }) => (
     {...rest}
     render={props =>
       is_autenticated ? (
-        <Component {...props} />
+        <Component {...props} readOnly={rest.readOnly || false} />
       ) : (
           <React.Fragment>
             {toastr.error('Erro', 'Por favor, faça o login para acessar a área privada')}

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 
 const button = (props) => (
-    <button className={`btn ${props.icon && 'btn-icon-split'} btn-primary `} onClick={() => props.onClick && props.onClick()} type={props.type || 'button'}>
+    <button className={`btn ${props.icon && 'btn-icon-split'} btn-${props.color || 'primary'} `} onClick={() => props.onClick && props.onClick()} type={props.type || 'button'}>
     {
         props.icon &&
             <span className="icon text-white-50">
@@ -14,7 +14,7 @@ const button = (props) => (
 )
 
 const link = (props) => (
-    <Link to={props.to} className={`btn ${props.icon && 'btn-icon-split'} btn-primary `} onClick={() => props.onClick && props.onClick()}>
+    <Link to={props.to} className={`btn ${props.icon && 'btn-icon-split'} btn-${props.color || 'primary'} `} onClick={() => props.onClick && props.onClick()}>
     {
         props.icon &&
             <span className="icon text-white-50">

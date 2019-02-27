@@ -19,6 +19,7 @@ export default props => (
     <PrivateRoute exact path="/users" component={Users} />
     <PrivateRoute exact path="/users/create" component={FormUsuario} />
     <PrivateRoute path="/users/update/:userId" component={FormUsuario} />
+    <PrivateRoute path="/users/delete/:userId" readOnly={true} component={FormUsuario} />
 
     <Redirect from="*" to="/404" />
   </Switch>
