@@ -1,9 +1,13 @@
 import React, { Component } from "react";
-import axios from 'axios';
-import consts from '../../config/consts'
+import axios from "axios";
+import consts from "../../config/consts";
 
-import { Primario as H1 } from '../../common/layout/title'
-import { button as Button, link as Link } from '../../common/layout/button'
+import { Primario as H1 } from "../../common/layout/title";
+import {
+    group_button as GrupoButton,
+    button as Button,
+    link as Link
+} from "../../common/layout/button";
 
 export default class Users extends Component {
     constructor(props) {
@@ -13,34 +17,48 @@ export default class Users extends Component {
             usuarios: [],
             pagination: {},
             filter_pagination: {
-                nome: '',
-                email: '',
-                phone: ''
+                nome: "",
+                email: "",
+                phone: ""
             }
-        }
-
+        };
 
         this.populateUsersList(1);
     }
 
     renderTableLines() {
-        return this.state.usuarios.map((usuario) => (
+        return this.state.usuarios.map(usuario => (
             <tr key={usuario.id}>
                 <td>{usuario.id}</td>
                 <td>{usuario.nome}</td>
                 <td>{usuario.email}</td>
                 <td>{usuario.phone}</td>
                 <td>
-                    <Link to={`/users/update/${usuario.id}`} text="Atualizar" />
-                    <Link to={`/users/delete/${usuario.id}`} text="Excluir" />
+                    <GrupoButton>
+                        <Link
+                            to={`/users/update/${usuario.id}`}
+                            text="Atualizar"
+                        />
+                        <Link
+                            to={`/users/delete/${usuario.id}`}
+                            text="Excluir"
+                        />
+                    </GrupoButton>
+                    <Link
+                        to={`/users/${usuario.id}/tratamentos`}
+                        text="Acompanhar"
+                    />
                 </td>
             </tr>
-        ))
+        ));
     }
 
     populateUsersList() {
         const page = this.state.pagination.current_page;
-        axios.get(`${consts.API_URL}/users/page`, { params: { filtro: { ...this.state.filter_pagination }, page } })
+        axios
+            .get(`${consts.API_URL}/users/page`, {
+                params: { filtro: { ...this.state.filter_pagination }, page }
+            })
             .then(resp => {
                 const data = resp.data;
                 const usuarios = data.data;
@@ -52,8 +70,9 @@ export default class Users extends Component {
                     pagination: data
                 });
                 this.renderButtonsPagination();
-            }).catch(e => {
-                console.log('erro', e);
+            })
+            .catch(e => {
+                console.log("erro", e);
             });
     }
 
@@ -70,7 +89,7 @@ export default class Users extends Component {
                 l;
 
             for (let i = 1; i <= last; i++) {
-                if (i == 1 || i == last || i >= left && i < right) {
+                if (i == 1 || i == last || (i >= left && i < right)) {
                     range.push(i);
                 }
             }
@@ -80,7 +99,7 @@ export default class Users extends Component {
                     if (i - l === 2) {
                         rangeWithDots.push(l + 1);
                     } else if (i - l !== 1) {
-                        rangeWithDots.push('...');
+                        rangeWithDots.push("...");
                     }
                 }
                 rangeWithDots.push(i);
@@ -90,27 +109,59 @@ export default class Users extends Component {
             return rangeWithDots;
         }
 
-        const buttons = getPaginationButtons(this.state.pagination.current_page, this.state.pagination.last_page);
+        const buttons = getPaginationButtons(
+            this.state.pagination.current_page,
+            this.state.pagination.last_page
+        );
 
         return (
             <div>
-                Mostrando página {this.state.pagination.current_page} de {this.state.pagination.last_page}
+                Mostrando página {this.state.pagination.current_page} de{" "}
+                {this.state.pagination.last_page}
                 <div className="btn-toolbar" role="toolbar">
                     <div className="btn-group">
-                        {this.state.pagination.current_page > 1 &&
-                            <Button text='<' onClick={() => this.handlePage(this.state.pagination.current_page - 1)} />
-                        }
-                        {buttons.map((pagina) => (
-                            <Button key={pagina} text={pagina} color={pagina === this.state.pagination.current_page && 'info'} 
-                            onClick={() => pagina !== this.state.pagination.current_page && pagina !== '...' && this.handlePage(pagina)} />
+                        {this.state.pagination.current_page > 1 && (
+                            <Button
+                                text="<"
+                                onClick={() =>
+                                    this.handlePage(
+                                        this.state.pagination.current_page - 1
+                                    )
+                                }
+                            />
+                        )}
+                        {buttons.map(pagina => (
+                            <Button
+                                key={pagina}
+                                text={pagina}
+                                color={
+                                    pagina ===
+                                        this.state.pagination.current_page &&
+                                    "info"
+                                }
+                                onClick={() =>
+                                    pagina !==
+                                        this.state.pagination.current_page &&
+                                    pagina !== "..." &&
+                                    this.handlePage(pagina)
+                                }
+                            />
                         ))}
-                        {this.state.pagination.current_page !== this.state.pagination.last_page &&
-                            <Button text='>' onClick={() => this.handlePage(this.state.pagination.current_page + 1)} />
-                        }
+                        {this.state.pagination.current_page !==
+                            this.state.pagination.last_page && (
+                            <Button
+                                text=">"
+                                onClick={() =>
+                                    this.handlePage(
+                                        this.state.pagination.current_page + 1
+                                    )
+                                }
+                            />
+                        )}
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 
     handlePage(page) {
@@ -127,11 +178,11 @@ export default class Users extends Component {
     }
 
     handleFilterShortCut(e) {
-        if (e.key === 'Enter') {
+        if (e.key === "Enter") {
             this.populateUsersList();
-        } else if (e.key === 'Escape') {
+        } else if (e.key === "Escape") {
             const i = { ...this.state };
-            i.filter_pagination[e.target.name] = '';
+            i.filter_pagination[e.target.name] = "";
             this.setState(i);
         }
     }
@@ -151,19 +202,62 @@ export default class Users extends Component {
                                 <th>Nome</th>
                                 <th>Email</th>
                                 <th>Telefone</th>
-                                <th></th>
+                                <th />
                             </tr>
                             <tr>
-                                <th></th>
-                                <th><input type="text" value={this.state.filter_pagination.nome} name="nome" onKeyUp={(e) => this.handleFilterShortCut(e)} onChange={(e) => this.handleFilterChange(e)} className="form-control" /></th>
-                                <th><input type="text" value={this.state.filter_pagination.email} name="email" onKeyUp={(e) => this.handleFilterShortCut(e)} onChange={(e) => this.handleFilterChange(e)} className="form-control" /></th>
-                                <th><input type="text" value={this.state.filter_pagination.phone} name="phone" onKeyUp={(e) => this.handleFilterShortCut(e)} onChange={(e) => this.handleFilterChange(e)} className="form-control" /></th>
-                                <th></th>
+                                <th />
+                                <th>
+                                    <input
+                                        type="text"
+                                        value={
+                                            this.state.filter_pagination.nome
+                                        }
+                                        name="nome"
+                                        onKeyUp={e =>
+                                            this.handleFilterShortCut(e)
+                                        }
+                                        onChange={e =>
+                                            this.handleFilterChange(e)
+                                        }
+                                        className="form-control"
+                                    />
+                                </th>
+                                <th>
+                                    <input
+                                        type="text"
+                                        value={
+                                            this.state.filter_pagination.email
+                                        }
+                                        name="email"
+                                        onKeyUp={e =>
+                                            this.handleFilterShortCut(e)
+                                        }
+                                        onChange={e =>
+                                            this.handleFilterChange(e)
+                                        }
+                                        className="form-control"
+                                    />
+                                </th>
+                                <th>
+                                    <input
+                                        type="text"
+                                        value={
+                                            this.state.filter_pagination.phone
+                                        }
+                                        name="phone"
+                                        onKeyUp={e =>
+                                            this.handleFilterShortCut(e)
+                                        }
+                                        onChange={e =>
+                                            this.handleFilterChange(e)
+                                        }
+                                        className="form-control"
+                                    />
+                                </th>
+                                <th />
                             </tr>
                         </thead>
-                        <tbody>
-                            {this.renderTableLines()}
-                        </tbody>
+                        <tbody>{this.renderTableLines()}</tbody>
                     </table>
                     {this.renderButtonsPagination()}
                 </div>
